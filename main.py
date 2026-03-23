@@ -1,6 +1,7 @@
 print("Hello! Welcome to Sullivan's Salads.")
 protein_price = 0
 drink_price = 0
+order = []
 protein_order_complete = False
 while not protein_order_complete:
     protein_choice = input("What kind of protein would you like in your salad? Chicken, steak, or tofu? Please make sure to answer in all lowercase.")
@@ -18,6 +19,7 @@ while not protein_order_complete:
         protein_order_complete = True
     else:
         print("Sorry! There was an error with your input. Check to make sure you selected a valid option and answered in all lowercase.")
+order.append(protein_choice)
 dressing_order_complete = False
 while not dressing_order_complete:
     dressing_yes_or_no = input("Would you like dressing on that?")
@@ -44,6 +46,7 @@ while not dressing_order_complete:
         dressing_choice = "no"
     else:
         print("Sorry! There was an error with your input. Check to make sure you selected a valid option and answered in all lowercase.")
+order.append(dressing_choice)
 drink_order_complete = False
 while not drink_order_complete:
     drink_yes_or_no = input("Would you like a drink? (yes or no)")    
@@ -70,10 +73,13 @@ while not drink_order_complete:
         drink_choice = "nothing"
     else:
         print("Sorry! There was an error with your input. Check to make sure you selected a valid option and answered in all lowercase.")
+order.append(drink_choice)
 crouton_count_complete = False
+crouton_count = 0
 while not crouton_count_complete:
     crouton_yes_or_no = input("Would you like croutons?")
     if crouton_yes_or_no == "yes":
+        # NOTE: this may throw an exception if user enters a non-number
         crouton_count = int(input("Great! How many would you like? It's 25 cents per crouton.").strip())
         if crouton_count > 10:
             print("Sorry! We can't give you anymore than 10.")
@@ -90,8 +96,8 @@ while not crouton_count_complete:
     else: 
         print("Sorry! There was an error with your input. Check to make sure you selected a valid option and answered in all lowercase.")
 crouton_price = crouton_count * 0.25
+order.append(crouton_count)
 drink_order_complete = True
-peanut_order_complete = False
 total_cost = protein_price + drink_price + dressing_price + crouton_price
 result = f"Your final order is a {protein_choice} salad with {dressing_choice} dressing, and {drink_choice} to drink. Along with {crouton_count} croutons."
 print(result)
